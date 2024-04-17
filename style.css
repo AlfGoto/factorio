@@ -4,11 +4,16 @@
     margin: 0;
 }
 body{
+    overflow: hidden;
     #map{
         position: relative;
         .square{
             position: absolute;
             border: 1px solid black;
         }
+    }
+    #perso{
+        position: absolute;
+        background-color: yellow;
     }
 }
