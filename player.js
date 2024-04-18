@@ -76,15 +76,15 @@ document.addEventListener('DOMContentLoaded', () => {
             addX = utils.svwToPx(addX)
             addY = utils.svwToPx(addY)
 
-            for(let i = 0; i<arr.length; i++){
+            for (let i = 0; i < arr.length; i++) {
                 let d = arr[i].getBoundingClientRect()
                 if (
-                    p.x < d.x + d.width +addY &&
-                    p.x + p.width > d.x + addY &&
-                    p.y < d.y + d.height +addX &&
-                    p.height + p.y > d.y +addX
+                    p.x < d.x + d.width + addX &&
+                    p.x + p.width > d.x + addX &&
+                    p.y < d.y + d.height + addY &&
+                    p.height + p.y > d.y + addY
                 ) {
-                    console.log('colision')
+                    // console.log('colision')
                     return true
                 }
             }
