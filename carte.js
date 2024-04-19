@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
 
-            console.log(this.grid)
+            // console.log(this.grid)
 
         }
         createSquare(x, y) {

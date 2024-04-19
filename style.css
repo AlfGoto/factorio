@@ -16,4 +16,30 @@ body{
         position: absolute;
         background-color: yellow;
     }
+    #selector{
+        position: absolute;
+        bottom: -10svw;
+        left : 0svw;
+        width: 100svw;
+        height: 10svw;
+        background-color: rgba(211, 211, 211, 0.744);
+        z-index: 10;
+        transition: bottom ease-in-out .5s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        img{
+            height: 70%;
+            padding: .5svw;
+
+            &:hover{
+                height: 80%;
+                padding: 0svw;
+            }
+        }
+    }
+    #display{
+        position: absolute;
+    }
 }

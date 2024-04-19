@@ -72,6 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         checkIfPlayerCanMove(arr, addX, addY) {
             if (arr == null) return
+
             let p = this.dom.getBoundingClientRect()
             addX = utils.svwToPx(addX)
             addY = utils.svwToPx(addY)
