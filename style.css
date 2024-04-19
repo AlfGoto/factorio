@@ -41,5 +41,6 @@ body{
     }
     #display{
         position: absolute;
+        transform-origin: 50% 50%;
     }
 }

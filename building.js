@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', ()=>{
     class build{
-        constructor(){
+        constructor(x,y){
+            
         }
     }
 

@@ -6,6 +6,9 @@ document.addEventListener('DOMContentLoaded', () => {
             this.displaying = false
             this.arr = []
 
+            this.rotationList = ['90deg', '180deg', '270deg', '0deg']
+            this.rotation = 0
+
             this.displayImage = ''
             this.displayDom = document.createElement('img')
             document.body.appendChild(this.displayDom)
@@ -13,7 +16,11 @@ document.addEventListener('DOMContentLoaded', () => {
             this.displayDom.style.height = carte.sizeSquare + 'svw'
             this.displayDom.style.display = 'none'
 
-            document.addEventListener('keydown', e => { if (e.keyCode == 70) this.openSelector() })
+            document.addEventListener('keydown', e => {
+                // console.log(e) 
+                if (e.keyCode == 70) this.openSelector()
+                if(e.keyCode == 82) this.nextRotation()
+             })
             setInterval(()=>{this.display()},50)
         }
         display(){
@@ -21,6 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.body.style.cursor = 'none'
                 this.displayDom.style.display = 'block'
                 this.displayDom.src = this.displayImage
+                this.displayDom.style.transform = "rotate(" + this.rotationList[this.rotation] + ')'
                 let decalMapY = Math.abs((Number(carte.map.style.top.replace('svw', '')) % carte.sizeSquare).toFixed(3))
                 let decalMapX = Math.abs((Number(carte.map.style.left.replace('svw', '')) % carte.sizeSquare).toFixed(3))
                 let x = utils.pxToSvw(utils.mouseX)
@@ -43,6 +51,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 this.dom.style.bottom = '0svw'
             }
             this.open = !this.open
+        }
+        nextRotation(){
+            this.rotation++
+            if(this.rotation == this.rotationList.length)this.rotation = 0
         }
     }
     window.selector = new selectorClass()
