@@ -18,20 +18,22 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         display(){
             if(this.displaying){
+                document.body.style.cursor = 'none'
                 this.displayDom.style.display = 'block'
                 this.displayDom.src = this.displayImage
+                let decalMapY = Math.abs((Number(carte.map.style.top.replace('svw', '')) % carte.sizeSquare).toFixed(3))
+                let decalMapX = Math.abs((Number(carte.map.style.left.replace('svw', '')) % carte.sizeSquare).toFixed(3))
                 let x = utils.pxToSvw(utils.mouseX)
                 x = x - (x % carte.sizeSquare)
                 let y = utils.pxToSvw(utils.mouseY)
                 y = y - (y % carte.sizeSquare)
-                console.log(x)
-                this.displayDom.style.top = y + 'svw'
-                this.displayDom.style.left = x + 'svw'
+                this.displayDom.style.top = (y - decalMapY) + 'svw'
+                this.displayDom.style.left = (x - decalMapX) + 'svw'
 
             }else{
+                document.body.style.cursor = 'auto'
                 this.displayDom.style.display = 'none'
             }
-
         }
         openSelector() {
             if(this.open){
