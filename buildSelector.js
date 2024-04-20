@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             this.displayImage = ''
             this.displayDom = document.createElement('img')
-            document.body.appendChild(this.displayDom)
+            carte.map.appendChild(this.displayDom)
             this.displayDom.id = 'display'
             this.displayDom.style.height = carte.sizeSquare + 'svw'
             this.displayDom.style.display = 'none'
@@ -26,26 +26,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         display() {
             if (this.displaying) {
-                // document.body.style.cursor = 'none'
+                document.body.style.cursor = 'none'
                 this.displayDom.style.display = 'block'
                 this.displayDom.src = this.displayImage
                 this.displayDom.style.transform = "rotate(" + this.rotationList[this.rotation] + ')'
-                let decalMapY = Math.abs((Number(carte.map.style.top.replace('svw', '')) % carte.sizeSquare).toFixed(3))
-                let decalMapX = Math.abs((Number(carte.map.style.left.replace('svw', '')) % carte.sizeSquare).toFixed(3))
-                let x = utils.pxToSvw(utils.mouseX)
-                x = x - (x % carte.sizeSquare)
-                let y = utils.pxToSvw(utils.mouseY)
-                y = y - (y % carte.sizeSquare)
-                if (decalMapY < carte.sizeSquare / 2) {
-                    this.displayDom.style.top = (y + decalMapY) + 'svw'
-                } else {
-                    this.displayDom.style.top = (y + decalMapY) + 'svw'
-                }
-                if (decalMapX < carte.sizeSquare / 2) {
-                    this.displayDom.style.left = (x + decalMapX) + 'svw'
-                } else {
-                    this.displayDom.style.left = (x + decalMapX) + 'svw'
-                }
+                let obj = utils.getXYOfMapFromClick()
+                // console.log(obj)
+                this.displayDom.style.top = obj.y*carte.sizeSquare + 'svw'
+                this.displayDom.style.left = obj.x*carte.sizeSquare + 'svw'
 
             } else {
                 document.body.style.cursor = 'auto'
@@ -69,8 +57,11 @@ document.addEventListener('DOMContentLoaded', () => {
             // if(e.target != carte.map) return
             if (!this.displaying) return
             let co = utils.getXYOfMapFromClick()
-            console.log(co)
-            console.log(carte.grid[co.x][co.y])
+            // console.log(co)
+            // console.log(carte.grid[co.x][co.y])
+            if(carte.grid[co.x][co.y] == ''){
+                carte.createSquare(co.x,co.y, 'square')
+            }
             // this.displaying = false
         }
     }

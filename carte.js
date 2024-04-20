@@ -20,6 +20,9 @@ document.addEventListener('DOMContentLoaded', () => {
             // Disons qu'une case fait 4svw
             this.sizeSquare = obj.sizeSquare || 2
 
+            this.createGrid()
+        }
+        createGrid(){
             //faisons l'array de la grille.
             this.grid = []
             for (let x = 0; x < this.totalSize / this.sizeSquare; x++) {
@@ -34,12 +37,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }
             }
-
+    
             // console.log(this.grid)
 
         }
-        createSquare(x, y, cl) {
-            this.grid[x][y] = cl
+        createSquare(x, y, cl = 'square', obj) {
             // this.map.innerHTML += "<div class='square' style='height: " + this.sizeSquare + "svw; width: " + this.sizeSquare + "svw;top:" + y * this.sizeSquare + "svw;left:" + x * this.sizeSquare + "svw'></div>"
             let square = document.createElement('div')
             square.classList.add(cl)
@@ -47,6 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
             square.style.width = this.sizeSquare + 'svw'
             square.style.top = y * this.sizeSquare + 'svw'
             square.style.left = x * this.sizeSquare + 'svw'
+            this.grid[x][y] = square
             this.map.appendChild(square)
 
             return square
