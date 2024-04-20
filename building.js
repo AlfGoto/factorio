@@ -6,10 +6,12 @@ document.addEventListener('DOMContentLoaded', ()=>{
             this.x = x
             this.y = y
 
+            this.rotation = selector.rotationList[selector.rotation]
+
             this.img = document.createElement('img')
             this.dom.appendChild(this.img)
             this.img.src = 'img/' + this.constructor.name + '.png'
-            this.img.style.transform = "rotate(" + selector.rotationList[selector.rotation] + ')'
+            this.img.style.transform = "rotate(" + this.rotation + ')'
 
         }
     }

@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
             this.displaying = false
             this.arr = []
 
-            this.rotationList = ['90deg', '180deg', '270deg', '0deg']
+            this.rotationList = ['0deg', '90deg', '180deg', '270deg']
             this.rotation = 0
 
             this.displayImage = ''
