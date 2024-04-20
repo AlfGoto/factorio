@@ -19,13 +19,14 @@ document.addEventListener('DOMContentLoaded', () => {
             document.addEventListener('keydown', e => {
                 // console.log(e) 
                 if (e.keyCode == 70) this.openSelector()
-                if(e.keyCode == 82) this.nextRotation()
-             })
-            setInterval(()=>{this.display()},50)
+                if (e.keyCode == 82) this.nextRotation()
+            })
+            document.addEventListener('click', (e) => { this.click(e) })
+            setInterval(() => { this.display() }, 50)
         }
-        display(){
-            if(this.displaying){
-                document.body.style.cursor = 'none'
+        display() {
+            if (this.displaying) {
+                // document.body.style.cursor = 'none'
                 this.displayDom.style.display = 'block'
                 this.displayDom.src = this.displayImage
                 this.displayDom.style.transform = "rotate(" + this.rotationList[this.rotation] + ')'
@@ -35,48 +36,64 @@ document.addEventListener('DOMContentLoaded', () => {
                 x = x - (x % carte.sizeSquare)
                 let y = utils.pxToSvw(utils.mouseY)
                 y = y - (y % carte.sizeSquare)
-                this.displayDom.style.top = (y - decalMapY) + 'svw'
-                this.displayDom.style.left = (x - decalMapX) + 'svw'
+                if (decalMapY < carte.sizeSquare / 2) {
+                    this.displayDom.style.top = (y + decalMapY) + 'svw'
+                } else {
+                    this.displayDom.style.top = (y + decalMapY) + 'svw'
+                }
+                if (decalMapX < carte.sizeSquare / 2) {
+                    this.displayDom.style.left = (x + decalMapX) + 'svw'
+                } else {
+                    this.displayDom.style.left = (x + decalMapX) + 'svw'
+                }
 
-            }else{
+            } else {
                 document.body.style.cursor = 'auto'
                 this.displayDom.style.display = 'none'
             }
         }
         openSelector() {
-            if(this.open){
+            if (this.open) {
                 this.dom.style.bottom = '-10svw'
                 this.displaying = false
-            }else{
+            } else {
                 this.dom.style.bottom = '0svw'
             }
             this.open = !this.open
         }
-        nextRotation(){
+        nextRotation() {
             this.rotation++
-            if(this.rotation == this.rotationList.length)this.rotation = 0
+            if (this.rotation == this.rotationList.length) this.rotation = 0
+        }
+        click(e) {
+            // if(e.target != carte.map) return
+            if (!this.displaying) return
+            let co = utils.getXYOfMapFromClick()
+            console.log(co)
+            console.log(carte.grid[co.x][co.y])
+            // this.displaying = false
         }
     }
     window.selector = new selectorClass()
 
-    class buildInSelector{
-        constructor(name, obj){
+    class buildInSelector {
+        constructor(name, cla) {
             this.name = name
+            this.class = cla
 
             this.dom = document.createElement('img')
             this.dom.src = 'icons/' + this.name + '.png'
             selector.dom.appendChild(this.dom)
-            this.dom.addEventListener('click', ()=>{this.click()})
+            this.dom.addEventListener('click', () => { this.click() })
         }
-        click(){
+        click() {
             selector.displaying = true
             selector.displayImage = 'img/' + this.name + '.png'
-
-            console.log('click on ' + this.name)
+            selector.classToPlace = this.class
         }
     }
 
-    window.selector.arr = [
+    selector.arr = [
         new buildInSelector('belt'),
         new buildInSelector('mine'),
     ]

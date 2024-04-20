@@ -6,15 +6,21 @@
 body{
     overflow: hidden;
     #map{
+        border: .1svw solid black;
         position: relative;
         .square{
             position: absolute;
             border: 1px solid black;
         }
+        .empty{
+            position: absolute;
+        }
+        z-index: 9;
     }
     #perso{
         position: absolute;
         background-color: yellow;
+        z-index: 12;
     }
     #selector{
         position: absolute;
@@ -42,5 +48,6 @@ body{
     #display{
         position: absolute;
         transform-origin: 50% 50%;
+        z-index: 5;
     }
 }

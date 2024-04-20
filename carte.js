@@ -13,6 +13,8 @@ document.addEventListener('DOMContentLoaded', () => {
             this.map.style.width = this.totalSize + 'svw'
             this.map.style.top = (0 - (this.totalSize / 2)) + 'svw'
             this.map.style.left = (0 - (this.totalSize / 2)) + 'svw'
+            this.height = utils.pxToSvw(window.innerHeight)
+            // console.log(this.height)
 
 
             // Disons qu'une case fait 4svw
@@ -26,8 +28,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     //disons que la case est vide de base
                     this.grid[x][y] = ''
                     if (Math.random() * 100 < 0.5) {
-                        this.grid[x][y] = this.createSquare(x, y)
-
+                        this.grid[x][y] = this.createSquare(x, y, 'square')
+                    }else{
+                        // this.grid[x][y] = this.createSquare(x, y, 'hidden')
                     }
                 }
             }
@@ -35,11 +38,11 @@ document.addEventListener('DOMContentLoaded', () => {
             // console.log(this.grid)
 
         }
-        createSquare(x, y) {
-            this.grid[x][y] = 'square'
+        createSquare(x, y, cl) {
+            this.grid[x][y] = cl
             // this.map.innerHTML += "<div class='square' style='height: " + this.sizeSquare + "svw; width: " + this.sizeSquare + "svw;top:" + y * this.sizeSquare + "svw;left:" + x * this.sizeSquare + "svw'></div>"
             let square = document.createElement('div')
-            square.classList.add('square')
+            square.classList.add(cl)
             square.style.height = this.sizeSquare + 'svw'
             square.style.width = this.sizeSquare + 'svw'
             square.style.top = y * this.sizeSquare + 'svw'
