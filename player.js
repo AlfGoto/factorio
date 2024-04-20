@@ -80,6 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
             addY = utils.svwToPx(addY)
 
             for (let i = 0; i < arr.length; i++) {
+                if(arr[i].classList.contains('belt'))return
                 let d = arr[i].getBoundingClientRect()
                 if (
                     p.x < d.x + d.width + addX &&

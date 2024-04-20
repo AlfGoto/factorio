@@ -54,13 +54,16 @@ document.addEventListener('DOMContentLoaded', () => {
             if (this.rotation == this.rotationList.length) this.rotation = 0
         }
         click(e) {
-            // if(e.target != carte.map) return
+            if(e.target == this.dom) return
+            let r = false
+            this.arr.forEach(elem=>{if(e.target == elem.dom) r = true})
+            if(r)return
             if (!this.displaying) return
+
             let co = utils.getXYOfMapFromClick()
-            // console.log(co)
-            // console.log(carte.grid[co.x][co.y])
+
             if(carte.grid[co.x][co.y] == ''){
-                carte.createSquare(co.x,co.y, 'square')
+                new this.classToPlace(co.x,co.y)
             }
             // this.displaying = false
         }
@@ -85,8 +88,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     selector.arr = [
-        new buildInSelector('belt'),
-        new buildInSelector('mine'),
+        new buildInSelector('belt', belt),
+        new buildInSelector('mine', mine),
     ]
 
 

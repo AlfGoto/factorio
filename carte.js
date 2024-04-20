@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 for (let y = 0; y < this.totalSize / this.sizeSquare; y++) {
                     //disons que la case est vide de base
                     this.grid[x][y] = ''
-                    if (Math.random() * 100 < 0.5) {
+                    if (Math.random() * 100 < 0.1) {
                         this.grid[x][y] = this.createSquare(x, y, 'square')
                     }else{
                         // this.grid[x][y] = this.createSquare(x, y, 'hidden')

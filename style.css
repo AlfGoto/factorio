@@ -1,31 +1,30 @@
-*{
+* {
     box-sizing: border-box;
     padding: 0;
     margin: 0;
 }
-body{
+body {
     overflow: hidden;
-    #map{
+    #map {
         border: .1svw solid black;
         position: relative;
-        .square{
+        div {
             position: absolute;
-            border: 1px solid black;
         }
-        .empty{
-            position: absolute;
+        .square {
+            border: 1px solid black;
         }
         z-index: 9;
     }
-    #perso{
+    #perso {
         position: absolute;
         background-color: yellow;
         z-index: 12;
     }
-    #selector{
+    #selector {
         position: absolute;
         bottom: -10svw;
-        left : 0svw;
+        left: 0svw;
         width: 100svw;
         height: 10svw;
         background-color: rgba(211, 211, 211, 0.744);
@@ -35,19 +34,26 @@ body{
         align-items: center;
         justify-content: center;
 
-        img{
+        img {
             height: 70%;
             padding: .5svw;
 
-            &:hover{
+            &:hover {
                 height: 80%;
                 padding: 0svw;
             }
         }
     }
-    #display{
+    #display {
         position: absolute;
         transform-origin: 50% 50%;
         z-index: 5;
+    }
+}
+
+.bat{
+
+    img{
+        width: 100%;
     }
 }
