@@ -13,12 +13,8 @@ document.addEventListener('DOMContentLoaded', () => {
             let x = this.moduloSquare(Math.abs(carte.map.style.left.replace('svw', '')) + this.pxToSvw(this.mouseX)) / carte.sizeSquare
             return { x: x, y: y }
         }
-        moduloSquare(arg) {
-            return arg - (arg % carte.sizeSquare)
-        }
-        reverseModuloSquare(arg) {
-            return arg - (arg % carte.sizeSquare) + carte.sizeSquare
-        }
+        moduloSquare(arg) { return arg - (arg % carte.sizeSquare) }
+        reverseModuloSquare(arg) { return arg - (arg % carte.sizeSquare) + carte.sizeSquare }
         pointingTo(x, y, rot) {
             switch (rot) {
                 case '0deg':

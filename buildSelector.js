@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         display() {
             if (this.displaying) {
-                document.body.style.cursor = 'none'
+                // document.body.style.cursor = 'none'
                 this.displayDom.style.display = 'block'
                 this.displayDom.src = this.displayImage
                 this.displayDom.style.transform = "rotate(" + this.rotationList[this.rotation] + ')'
@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 this.displayDom.style.left = obj.x*carte.sizeSquare + 'svw'
 
             } else {
-                document.body.style.cursor = 'auto'
+                // document.body.style.cursor = 'auto'
                 this.displayDom.style.display = 'none'
             }
         }

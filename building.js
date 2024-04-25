@@ -15,6 +15,11 @@ document.addEventListener('DOMContentLoaded', () => {
             this.img.style.transform = "rotate(" + this.rotation + ')'
 
         }
+        reCheckBelt(){
+            setTimeout(() => {
+                this.checkBelt(utils.pointingTo(this.x, this.y, this.rotation))
+            }, 105)
+        }
     }
 
     class mine extends build {
@@ -35,14 +40,17 @@ document.addEventListener('DOMContentLoaded', () => {
             }, this.speed)
         }
         checkBelt(obj) {
-            if (obj.classList == null) return
+            if (obj.classList == null){
+                this.reCheckBelt()
+                return
+            }
             if (obj.classList.contains('belt')) {
                 // console.log(obj.obj)
                 if (!obj.obj.itemON) {
                     this.inventory.removeItem(1)
                     obj.obj.addItem(1)
-                }
-            }
+                }else{this.reCheckBelt()}
+            }else{this.reCheckBelt()}
         }
     }
 
@@ -67,7 +75,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 1000)
         }
         checkBelt(obj) {
-            console.log('checkBelt')
             if (obj.classList == null){ 
                 this.reCheckBelt()
                 return
@@ -81,11 +88,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     return
                 } else{this.reCheckBelt()}
             }else{this.reCheckBelt()}
-        }
-        reCheckBelt(){
-            setTimeout(() => {
-                this.checkBelt(utils.pointingTo(this.x, this.y, this.rotation))
-            }, 105)
         }
 
     }
