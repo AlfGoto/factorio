@@ -13,12 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
             this.dom.appendChild(this.img)
             this.img.src = 'img/' + this.constructor.name + '.png'
             this.img.style.transform = "rotate(" + this.rotation + ')'
-
-        }
-        reCheckBelt(){
-            setTimeout(() => {
-                this.checkBelt(utils.pointingTo(this.x, this.y, this.rotation))
-            }, 105)
         }
     }
 
@@ -30,27 +24,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // this.dom.addEventListener('click', () => { console.log(this.dom) })
 
-            this.mine()
+            setInterval(() => { this.checkBelt(utils.pointingTo(this.x, this.y, this.rotation)) }, 100)
+            setInterval(()=>{this.mine()}, this.speed)
         }
         mine() {
-            setTimeout(() => {
                 this.inventory.addItem(1)
-                this.mine()
-                this.checkBelt(utils.pointingTo(this.x, this.y, this.rotation))
-            }, this.speed)
+                // this.mine()
+                // this.checkBelt(utils.pointingTo(this.x, this.y, this.rotation))
         }
         checkBelt(obj) {
-            if (obj.classList == null){
-                this.reCheckBelt()
-                return
-            }
+            if(this.inventory.slots[0].id == undefined) return
+            if (obj.classList == null) return
             if (obj.classList.contains('belt')) {
                 // console.log(obj.obj)
                 if (!obj.obj.itemON) {
                     this.inventory.removeItem(1)
                     obj.obj.addItem(1)
-                }else{this.reCheckBelt()}
-            }else{this.reCheckBelt()}
+                }
+            }
         }
     }
 
@@ -66,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
             this.dom.appendChild(this.item)
             this.item.classList.add('item')
             // this.item.style.transform = "rotate(" + this.rotation + ')'
-            console.log(ids[id])
+            // console.log(ids[id])
             this.item.src = 'img/items/' + ids[id].name + '.png'
             this.item.classList.add('_' + this.rotation)
             setTimeout(() => { this.item.classList.add('_') }, 10)
@@ -75,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 1000)
         }
         checkBelt(obj) {
-            if (obj.classList == null){ 
+            if (obj.classList == null) {
                 this.reCheckBelt()
                 return
             }
@@ -86,8 +77,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     obj.obj.addItem(1)
                     this.item.remove()
                     return
-                } else{this.reCheckBelt()}
-            }else{this.reCheckBelt()}
+                } else { this.reCheckBelt() }
+            } else { this.reCheckBelt() }
+        }
+        reCheckBelt() {
+            setTimeout(() => {
+                this.checkBelt(utils.pointingTo(this.x, this.y, this.rotation))
+            }, 105)
         }
 
     }
