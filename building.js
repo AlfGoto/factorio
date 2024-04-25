@@ -19,9 +19,23 @@ document.addEventListener('DOMContentLoaded', ()=>{
     class mine extends build{
         constructor(x,y){
             super(x,y)
+            this.inventory = new Inventory(1, 50)
 
+            this.dom.addEventListener('click', ()=>{console.log(this)})
+
+            this.mine()
+        }
+        mine(){
+            setTimeout(()=>{
+                this.inventory.addItem(1)
+                this.mine()
+            }, 10000)
+        }
+        giveToBelt(){
+            // switch()
         }
     }
+
     class belt extends build{
         constructor(x,y){
             super(x,y)
