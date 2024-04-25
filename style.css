@@ -57,3 +57,42 @@ body {
         width: 100%;
     }
 }
+
+.belt{
+    .item{
+        --size: 50%;
+        position: absolute;
+        width: var(--size);
+        transition: all linear 1s;
+        
+        &._0deg{
+            top: 20%;
+            left: -25%;
+            &._{
+                left: 75%;
+            }
+        }
+        &._90deg{
+            left: 20%;
+            top: -25%;
+            &._{
+                top: 75%;
+            }
+        }
+        &._180deg{
+            top: 20%;
+            left: 75%;
+            &._{
+                left: -25%;
+            }
+        }
+        &._270deg{
+            left: 20%;
+            top: 75%;
+            &._{
+                top: -25%;
+            }
+        }
+
+    }
+}
