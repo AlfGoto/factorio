@@ -50,17 +50,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 let left = Number(carte.map.style.left.replace('svw', '')) / this.sizeSquare
                 let decalTop = (top - (top % this.sizeSquare) - this.decalY)
                 let decalLeft = (left - (left % this.sizeSquare) - this.decalX)
-                let indexTop = ((decalTop - carte.grid.length) + carte.grid.length) * -1
-                let indexLeft = ((decalLeft - carte.grid.length) + carte.grid.length) * -1
+                let indexTop = decalTop * -1
+                let indexLeft = decalLeft * -1
                 let arr = []
-                for (let x = indexLeft - 6; x < indexLeft + 6; x++) {
+                for (let x = indexLeft - 5; x < indexLeft + 5; x++) {
                     if (carte.grid[x] == null) continue
-                    for (let y = indexTop - 6; y < indexTop + 6; y++) {
+                    for (let y = indexTop - 5; y < indexTop + 5; y++) {
                         // console.log(x, y)
                         if (carte.grid[x][y] == null) continue
                         if (carte.grid[x][y] == '') continue
                         arr.push(carte.grid[x][y])
-
 
                     }
                 }
@@ -72,11 +71,16 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         checkIfPlayerCanMove(arr, addX, addY) {
             if (arr == null) return
+            //empecher l'ecran de sortir de la carte
+            if (Number(carte.map.style.top.replace('svw', '')) + addY >= 0 || Number(carte.map.style.left.replace('svw', '')) + addX >= 0) return true
+            if (Number(carte.map.style.top.replace('svw', '')) + addY <= (carte.totalSize - 100 + carte.height/carte.sizeSquare) * -1 || Number(carte.map.style.left.replace('svw', '')) + addX <= (carte.totalSize - 100) * -1) return true
+
             let p = this.dom.getBoundingClientRect()
             addX = utils.svwToPx(addX)
             addY = utils.svwToPx(addY)
 
             for (let i = 0; i < arr.length; i++) {
+                if(arr[i].classList.contains('belt'))return
                 let d = arr[i].getBoundingClientRect()
                 if (
                     p.x < d.x + d.width + addX &&

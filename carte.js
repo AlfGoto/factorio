@@ -13,11 +13,16 @@ document.addEventListener('DOMContentLoaded', () => {
             this.map.style.width = this.totalSize + 'svw'
             this.map.style.top = (0 - (this.totalSize / 2)) + 'svw'
             this.map.style.left = (0 - (this.totalSize / 2)) + 'svw'
+            this.height = utils.pxToSvw(window.innerHeight)
+            // console.log(this.height)
 
 
             // Disons qu'une case fait 4svw
             this.sizeSquare = obj.sizeSquare || 2
 
+            this.createGrid()
+        }
+        createGrid(){
             //faisons l'array de la grille.
             this.grid = []
             for (let x = 0; x < this.totalSize / this.sizeSquare; x++) {
@@ -25,25 +30,26 @@ document.addEventListener('DOMContentLoaded', () => {
                 for (let y = 0; y < this.totalSize / this.sizeSquare; y++) {
                     //disons que la case est vide de base
                     this.grid[x][y] = ''
-                    if (Math.random() * 100 < 0.5) {
-                        this.grid[x][y] = this.createSquare(x, y)
-
+                    if (Math.random() * 100 < 0.1) {
+                        this.grid[x][y] = this.createSquare(x, y, 'square')
+                    }else{
+                        // this.grid[x][y] = this.createSquare(x, y, 'hidden')
                     }
                 }
             }
-
-            console.log(this.grid)
+    
+            // console.log(this.grid)
 
         }
-        createSquare(x, y) {
-            this.grid[x][y] = 'square'
+        createSquare(x, y, cl = 'square', obj) {
             // this.map.innerHTML += "<div class='square' style='height: " + this.sizeSquare + "svw; width: " + this.sizeSquare + "svw;top:" + y * this.sizeSquare + "svw;left:" + x * this.sizeSquare + "svw'></div>"
             let square = document.createElement('div')
-            square.classList.add('square')
+            square.classList.add(cl)
             square.style.height = this.sizeSquare + 'svw'
             square.style.width = this.sizeSquare + 'svw'
             square.style.top = y * this.sizeSquare + 'svw'
             square.style.left = x * this.sizeSquare + 'svw'
+            this.grid[x][y] = square
             this.map.appendChild(square)
 
             return square
