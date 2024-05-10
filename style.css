@@ -2,6 +2,7 @@
     box-sizing: border-box;
     padding: 0;
     margin: 0;
+    font-family: sans-serif;
 }
 body {
     overflow: hidden;
@@ -28,6 +29,7 @@ body {
         width: 100svw;
         height: 10svw;
         background-color: rgba(211, 211, 211, 0.744);
+        backdrop-filter: blur(2px);
         z-index: 10;
         transition: bottom ease-in-out .5s;
         display: flex;
@@ -37,6 +39,8 @@ body {
         img {
             height: 70%;
             padding: .5svw;
+            image-rendering: -moz-crisp-edges;
+            image-rendering: crisp-edges;
 
             &:hover {
                 height: 80%;
@@ -51,48 +55,105 @@ body {
     }
 }
 
-.bat{
+.bat {
 
-    img{
+    img {
         width: 100%;
     }
 }
 
-.belt{
-    .item{
+.belt {
+    .item {
         --size: 50%;
         position: absolute;
         width: var(--size);
         transition: all linear 1s;
-        
-        &._0deg{
+
+        &._0deg {
             top: 20%;
             left: -25%;
-            &._{
+            &._ {
                 left: 75%;
             }
         }
-        &._90deg{
+        &._90deg {
             left: 20%;
             top: -25%;
-            &._{
+            &._ {
                 top: 75%;
             }
         }
-        &._180deg{
+        &._180deg {
             top: 20%;
             left: 75%;
-            &._{
+            &._ {
                 left: -25%;
             }
         }
-        &._270deg{
+        &._270deg {
             left: 20%;
             top: 75%;
-            &._{
+            &._ {
                 top: -25%;
             }
         }
 
     }
+}
+
+
+
+
+
+
+
+
+
+#xpBar {
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: transparent;
+    backdrop-filter: blur(2px);
+    border: 1px solid black;
+
+    position: absolute;
+    top: .4svw;
+    left: .4svw;
+    width: 10svw;
+    height: 1.5svw;
+    border-radius: .2svw;
+
+    z-index: 10;
+
+    &::-webkit-progress-bar {
+        background-color: rgba(0, 128, 0, 0.763);
+    }
+    &::-moz-progress-bar {
+        background-color: rgba(0, 128, 0, 0.763);
+    }
+}
+#lvlP{
+    font-size: 1.4svw;
+    position: absolute;
+    top: .4svw;
+    left: 11svw;
+    z-index: 11;
+}
+#maxXpP{
+    font-size: 1.4svw;
+    position: absolute;
+    top: .4svw;
+    left: 5svw;
+    z-index: 11;
+    width: 5svw;
+    text-align: end;
+}
+#xpP{
+    font-size: 1.4svw;
+    position: absolute;
+    top: .4svw;
+    left: .6svw;
+    z-index: 11;
+    width: 5svw;
+    text-align: start;
 }

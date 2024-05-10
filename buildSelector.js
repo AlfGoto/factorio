@@ -90,6 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
     selector.arr = [
         new buildInSelector('belt', belt),
         new buildInSelector('mine', mine),
+        new buildInSelector('altar', altar)
     ]
 
 

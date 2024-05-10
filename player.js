@@ -37,10 +37,59 @@ document.addEventListener('DOMContentLoaded', () => {
                 this.keyUp(e)
             })
 
+
+
+            //xp System
+            this.xp = 4
+            this.lvl = 1
+            this.maxXp = 10
+
+            this.xpBar = document.createElement('progress')
+            this.xpBar.id = 'xpBar'
+            document.body.appendChild(this.xpBar)
+
+            this.lvlP = document.createElement('p')
+            this.lvlP.id = 'lvlP'
+            document.body.appendChild(this.lvlP)
+
+            this.maxXpP = document.createElement('p')
+            this.maxXpP.id = 'maxXpP'
+            document.body.appendChild(this.maxXpP)
+
+            this.xpP = document.createElement('p')
+            this.xpP.id = 'xpP'
+            document.body.appendChild(this.xpP)
+
+
+
+
+            this.syncXpBar()
+
             //test d'utils
             // console.log(153)
             // console.log(utils.pxToSvw(153))
             // console.log(utils.svwToPx(utils.pxToSvw(153)))
+        }
+        addXp(arg = 1){
+            this.xp = this.xp + arg
+            if(this.xp >= this.maxXp){
+                this.xp = this.xp - this.maxXp
+                this.lvlUp()
+            }
+            this.syncXpBar()
+        }
+        lvlUp(){
+            this.lvl++
+            this.maxXp = Math.ceil(this.maxXp * 1.5)
+
+            this.syncXpBar()
+        }
+        syncXpBar(){
+            this.xpBar.max = this.maxXp
+            this.xpBar.value = this.xp
+            this.lvlP.innerHTML = this.lvl
+            this.maxXpP.innerHTML = this.maxXp
+            this.xpP.innerHTML = this.xp
         }
         getAllDivCloseToPlayer() {
             // console.log('function start')

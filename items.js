@@ -1,12 +1,14 @@
-document.addEventListener('DOMContentLoaded', ()=>{
+document.addEventListener('DOMContentLoaded', () => {
 })
 
 
 window.ids = [
     {
-        name: 'air'
+        name: 'air',
+        xp: 0,
     },
     {
-        name: 'stone'
+        name: 'stone',
+        xp: 1,
     },
 ]

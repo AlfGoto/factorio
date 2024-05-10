@@ -49,9 +49,11 @@ document.addEventListener('DOMContentLoaded', () => {
         constructor(x, y) {
             super(x, y)
             this.itemON = false
+            this.itemId = ''
 
         }
         addItem(id) {
+            this.itemId = id
             this.itemON = true
             this.item = document.createElement('img')
             this.dom.appendChild(this.item)
@@ -74,10 +76,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 // console.log(obj.obj)
                 if (!obj.obj.itemON) {
                     this.itemON = false
-                    obj.obj.addItem(1)
+                    obj.obj.addItem(this.itemId)
                     this.item.remove()
                     return
                 } else { this.reCheckBelt() }
+            }else if(obj.classList.contains('altar')){
+                this.itemON = false
+                obj.obj.on(this.itemId)
+                this.item.remove()
             } else { this.reCheckBelt() }
         }
         reCheckBelt() {
@@ -88,8 +94,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     }
 
+    class altar extends build{
+        constructor(x,y){
+            super(x, y)
+        }
+        on(id){
+            // console.log(ids[id])
+            player.addXp(ids[id].xp)
+        }
+    }
+
     window.mine = mine
     window.belt = belt
+    window.altar = altar
 
 
 })
